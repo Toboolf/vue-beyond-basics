@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Computed and watched properties</title>
+</head>
+
+<body>
+  <div id="app">
+    <div>
+      <h2>The data object "counter"</h2>
+      <pre><code>counter = {{counter}}</code></pre>
+    </div>
+    <div>
+      <h2>Computed properties</h2>
+      <p>Computed properties are chached, the method that gives it's value is only called if the value of the vue propeties used inside changes.</p>
+      <h3>This one is not changing</h3>
+      <p>{{computedDateNoChanges}}</p>
+      <pre><code>
+        computedDate: function() {
+          return new Date()
+        }
+      </code></pre>
+      <h3>This one actually is</h3>
+      <p>{{computedDateChanging}}</p>
+      <pre><code>
+        computedDate: function() {
+          this.counter //a data property
+          return new Date()
+        }
+      </code></pre>
+    </div>
+    <div>
+      <h2>The watched property</h2>
+      <p>{{watchedDate}}</p>
+      <pre><code>
+        counter: function() {
+          this.watchedDate = new Date()
+        }
+      </code></pre>
+    </div>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="computed_and_watchers.js"></script>
+<style>
+  pre code {
+    background-color: #eee;
+    border: 1px solid #999;
+    display: block;
+    padding: 20px;
+  }
+</style>
+
+</html>
